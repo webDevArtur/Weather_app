@@ -59,28 +59,29 @@ const App: FC = () => {
     // Функция для получения данных о погоде при вводе города или нажатии кнопки поиска
     const getWeather = async () => {
         if (inputRef.current) {
-            const url = `https://api.openweathermap.org/data/2.5/weather?q=${inputRef.current.value}&appid=${Api_Key}`;
+            const cityName = inputRef.current.value.trim(); // Убираем пробелы
+            const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${Api_Key}`;
             setLoading(true);
-
+    
             // Запрос данных о погоде с использованием fetch
             fetch(url)
                 .then(res => res.json())
                 .then(data => {
                     // Сброс предыдущих данных
                     setApiData(null);
-
+    
                     // Обработка случая, если город не найден или запрос некорректен
                     if (data.cod === "404" || data.cod === "400") {
                         setShowWeather([WeatherTypes[8]]);
                     }
-
+    
                     // Фильтрация и отображение соответствующей иконки в зависимости от погоды
                     setShowWeather(
                         WeatherTypes.filter(
                             (weather) => weather.type === data.weather[0].main
                         )
                     );
-
+    
                     // Обновление данных о погоде
                     setApiData(data);
                     setLoading(false);
@@ -91,6 +92,7 @@ const App: FC = () => {
                 });
         }
     };
+
 
     // Обработчик события нажатия Enter в поле ввода города
     const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
