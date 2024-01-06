@@ -2,8 +2,12 @@
 Простое React-приложение для получения данных о погоде с использованием OpenWeatherMap API.
 
 ## Ссылка на проект
+https://weather-app-pi-five-88.vercel.app/
 
 ## Скриншоты
+
+![image](https://github.com/webDevArtur/Weather_app/assets/141954990/bdcdc7aa-58a5-4a77-826c-0cd980ef5723)
+
 
 ## Описание
 
